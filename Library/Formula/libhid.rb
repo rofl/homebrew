@@ -8,9 +8,9 @@ class Libhid <Formula
   depends_on 'libusb'
   depends_on 'libusb-compat'
 
-  def install    
+  def install
     system "./configure", "--disable-debug", "--disable-dependency-tracking", "--prefix=#{prefix}", "--disable-swig"
-   
+
     system "make install"
   end
 end
