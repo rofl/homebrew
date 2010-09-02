@@ -8,6 +8,13 @@ class Dcled <Formula
   depends_on 'libhid'
 
   def install
+    inreplace 'makefile' do |s|
+      s.change_make_var! 'INSTALLDIR', prefix + 'bin'
+      s.change_make_var! 'CC', ENV['CC']
+      s.change_make_var! 'CFLAGS', ENV['CFLAGS'] + " -I#{HOMEBREW_PREFIX}/include"
+      s.change_make_var! 'LDFLAGS', ENV['LDFLAGS'] + ' -lm -lhid'
+    end
+
     system "make && make install"
   end
 end
